@@ -1,0 +1,60 @@
+name: Project Attest
+description: Request a project skill credential and maintain its linked README badge.
+
+inputs:
+  issuer-url:
+    description: Base URL of the skill credential issuer.
+    required: true
+  issuer-token:
+    description: Bearer token for the private issuance endpoint.
+    required: true
+  learner-id:
+    description: Stable learner identifier.
+    required: true
+  project-name:
+    description: Evaluated project name.
+    required: true
+  evaluation-score:
+    description: Integer evaluation score from 0 through 100.
+    required: true
+  issued-at:
+    description: Optional RFC 3339 issuance timestamp; the issuer chooses it when omitted.
+    required: false
+    default: ''
+  output-path:
+    description: Repository-relative destination for the returned credential.
+    required: false
+    default: project-attestation.json
+  badge-label:
+    description: Optional project, model, or agent label shown in the README badge.
+    required: false
+    default: ''
+  readme-path:
+    description: Repository-relative README whose delimited badge block is maintained.
+    required: false
+    default: README.md
+
+outputs:
+  proof-url:
+    description: Public proof page returned by the issuer, including any published chain receipt.
+    value: ${{ steps.attest.outputs.proof-url }}
+  attestation-path:
+    description: Absolute path to the atomically written attestation.
+    value: ${{ steps.attest.outputs.attestation-path }}
+
+runs:
+  using: composite
+  steps:
+    - id: attest
+      shell: bash
+      env:
+        INPUT_ISSUER_URL: ${{ inputs.issuer-url }}
+        INPUT_ISSUER_TOKEN: ${{ inputs.issuer-token }}
+        INPUT_LEARNER_ID: ${{ inputs.learner-id }}
+        INPUT_PROJECT_NAME: ${{ inputs.project-name }}
+        INPUT_EVALUATION_SCORE: ${{ inputs.evaluation-score }}
+        INPUT_ISSUED_AT: ${{ inputs.issued-at }}
+        INPUT_OUTPUT_PATH: ${{ inputs.output-path }}
+        INPUT_BADGE_LABEL: ${{ inputs.badge-label }}
+        INPUT_README_PATH: ${{ inputs.readme-path }}
+      run: python3 "$GITHUB_ACTION_PATH/attest.py"

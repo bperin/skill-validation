@@ -1,0 +1,28 @@
+flowchart TB
+    subgraph Ordinary[Ordinary skill claims]
+        direction LR
+        Portfolio[Portfolio or profile<br/>shows work]:::ordinary
+        Badge[Static badge or PDF<br/>shows a label]:::ordinary
+        Missing[Outside verifier cannot confirm<br/>issuer, authority, or current status]:::weak
+        Portfolio --> Missing
+        Badge --> Missing
+    end
+
+    subgraph Verified[Portable project and portfolio proof]
+        direction LR
+        Project[Real project<br/>and evidence]:::project
+        Issuer[Issuer evaluates<br/>and signs]:::issuer
+        Record[Portable signed<br/>skill record]:::record
+        Status[(Active, revoked,<br/>or replaced)]:::status
+        Check[Embedded in developer<br/>projects and portfolios]:::check
+        Project --> Issuer --> Record --> Check
+        Record --> Status --> Check
+    end
+
+    classDef ordinary fill:#edf2f7,stroke:#4a5568,color:#1a202c,stroke-width:1.5px;
+    classDef weak fill:#fee8e7,stroke:#b42318,color:#5d0e08,stroke-width:2px;
+    classDef project fill:#e8f1ff,stroke:#2457a6,color:#10213a,stroke-width:2px;
+    classDef issuer fill:#eaf8f1,stroke:#238558,color:#123c2a,stroke-width:2px;
+    classDef record fill:#dff7ec,stroke:#167a4a,color:#103a26,stroke-width:2px;
+    classDef status fill:#fff0d8,stroke:#b45f06,color:#472400,stroke-width:2px;
+    classDef check fill:#f1eaff,stroke:#6941c6,color:#26164a,stroke-width:2px;

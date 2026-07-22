@@ -1,0 +1,21 @@
+flowchart TB
+    subgraph Fast[Fast automated check]
+        direction LR
+        Link[Portfolio link,<br/>profile, or credential file]:::person
+        Signature[Issuer signature<br/>is valid]:::check
+        Evidence[Linked work<br/>matches]:::check
+        Status[Skill is active<br/>and current]:::check
+        Pass[Show verified skill<br/>and policy summary]:::pass
+        Link --> Signature --> Evidence --> Status --> Pass
+    end
+
+    Fail[Show changed, revoked,<br/>or superseded record]:::fail
+    Detail[Optional human review:<br/>source, architecture, logs, demo]:::detail
+    Fast -. any failed check .-> Fail
+    Fast --> Detail
+
+    classDef person fill:#f1eaff,stroke:#6941c6,color:#26164a,stroke-width:1.5px;
+    classDef check fill:#e8f1ff,stroke:#2457a6,color:#10213a,stroke-width:1.5px;
+    classDef pass fill:#d9f99d,stroke:#4d7c0f,color:#1a2e05,stroke-width:2px;
+    classDef fail fill:#fee8e7,stroke:#b42318,color:#5d0e08,stroke-width:1.5px;
+    classDef detail fill:#fff5dc,stroke:#a46b08,color:#4a3100,stroke-width:1.5px;

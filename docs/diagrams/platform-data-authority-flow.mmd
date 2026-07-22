@@ -1,0 +1,15 @@
+flowchart TD
+    Platform["The Revenue Generating Platform<br/>(BrianSkillCo)"]:::platform
+    B2CLearners["B2C Paying Developers<br/>(Core Platform Revenue & Self-Funded Keys)"]:::nodeStyle
+    SuccessProjects["Successful Projects & Telemetry<br/>(Proven real world outcomes)"]:::nodeStyle
+    B2BRecruiters["B2B Sourcing & Corporate Partners<br/>(Premium matching, recruitment, & SaaS sourcing fees)"]:::nodeStyle
+
+    B2CLearners -->|B2C Course Fees & Premium Add-on Revenue| Platform
+    Platform -->|Verifiable Credentials & Grading Sandbox| B2CLearners
+    B2CLearners -->|Apply skills to build| SuccessProjects
+    SuccessProjects -->|Data & Outcomes Flow Back| Platform
+    Platform -->|Verified Candidate Pipelines| B2BRecruiters
+    B2BRecruiters -->|B2B Sourcing & Placement Fees| Platform
+
+    classDef platform fill:#eff6ff,stroke:#1d4ed8,color:#1e3a8a,stroke-width:2px;
+    classDef nodeStyle fill:#f8fafc,stroke:#475569,color:#0f172a,stroke-width:1.5px;

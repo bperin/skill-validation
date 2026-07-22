@@ -1,0 +1,15 @@
+flowchart TD
+    subgraph Flywheel[The Talent, Trust, and Revenue Flywheel]
+        direction TB
+        Phase1["1. High Fidelity Training & On Chain Attestation<br/>(Student acquires industry certified skills on platform)"]:::phase
+        Phase2["2. Real World Capability Showcase<br/>(Developers build successful applications/companies, cryptographically binding their credentials)"]:::phase
+        Phase3["3. Capability & Outcomes Feedback Loop<br/>(Proves work was built using skills acquired here, optionally piping success metrics)"]:::phase
+        Phase4["4. Employer Trust & Funnel Injection<br/>(Recruiters see verified production success, driving massive student inflow & B2B hiring revenue)"]:::phase
+
+        Phase1 --> Phase2
+        Phase2 --> Phase3
+        Phase3 --> Phase4
+        Phase4 -->|Powers student inflow & pricing power| Phase1
+    end
+
+    classDef phase fill:#f8fafc,stroke:#2457a6,color:#0f172a,stroke-width:1.5px;

@@ -1,0 +1,25 @@
+flowchart TB
+    subgraph Issuer[Issuer-controlled issuance]
+        direction LR
+        Work[Project evidence]:::public
+        Review[Policy review]:::private
+        Root[Root authorization]:::private
+        Child[Scoped child key]:::private
+        Record[Signed credential]:::public
+        Work --> Review --> Root --> Child --> Record
+    end
+
+    subgraph Anywhere[Portable verification]
+        direction LR
+        Profile[Repository, portfolio,<br/>or profile]:::public
+        Check[Signature + evidence<br/>verification]:::public
+        Current{Current and<br/>not revoked?}:::public
+        Profile --> Check --> Current
+    end
+
+    Status[(Issuer-published status or public registry:<br/>revocation and update lineage)]:::public
+    Issuer --> Anywhere
+    Issuer --> Status --> Anywhere
+
+    classDef private fill:#eaf8f1,stroke:#238558,color:#123c2a,stroke-width:2px;
+    classDef public fill:#e8f1ff,stroke:#2457a6,color:#10213a,stroke-width:2px;

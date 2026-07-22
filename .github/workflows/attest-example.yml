@@ -1,0 +1,52 @@
+name: Issue project skill credential
+
+on:
+  workflow_dispatch:
+    inputs:
+      learner-id:
+        description: Stable learner identifier
+        required: true
+        type: string
+      project-name:
+        description: Evaluated project name
+        required: true
+        type: string
+      evaluation-score:
+        description: Integer score from 0 through 100
+        required: true
+        type: string
+      badge-label:
+        description: Optional project, model, or agent label
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  attest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Issue credential and update badge
+        id: issue
+        uses: ./.github/actions/project-attest
+        with:
+          issuer-url: ${{ vars.ISSUER_URL }}
+          issuer-token: ${{ secrets.ISSUER_TOKEN }}
+          learner-id: ${{ inputs.learner-id }}
+          project-name: ${{ inputs.project-name }}
+          evaluation-score: ${{ inputs.evaluation-score }}
+          badge-label: ${{ inputs.badge-label }}
+      - name: Record proof link in job summary
+        env:
+          PROOF_URL: ${{ steps.issue.outputs.proof-url }}
+        run: |
+          printf 'Skill proof: <%s>\n' "$PROOF_URL" >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload generated credential and README preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-attestation
+          path: |
+            project-attestation.json
+            README.md

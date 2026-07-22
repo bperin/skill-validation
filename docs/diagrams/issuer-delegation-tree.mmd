@@ -1,0 +1,37 @@
+flowchart LR
+    subgraph Issuer[Issuer signing authority]
+        direction LR
+        Root[Root key<br/>KMS or HSM only]:::root
+        IssuerGrant[Root signed issuer grant<br/>person, skill, policy, expiry]:::grant
+        IssuerChild[Issuer child signing key<br/>may issue only this exact skill]:::issuer
+        Root --> IssuerGrant --> IssuerChild
+    end
+
+    subgraph Developer[Developer proof of control]
+        direction TB
+        HolderKey[Developer holder key<br/>private key stays with developer]:::holder
+        HolderGrant[Issuer signed holder grant<br/>one credential and proof scopes]:::grant
+        HolderKey -. public key .-> HolderGrant
+    end
+
+    Credential[Signed skill record<br/>project evidence and current policy]:::credential
+    Status[(Status and lineage<br/>active, revoked, replaced)]:::status
+    Project[Project or portfolio<br/>embeds the record]:::project
+    Verifier[Verifier checks issuer chain,<br/>holder proof, and current status]:::verify
+
+    IssuerChild --> Credential
+    IssuerChild -->|signs| HolderGrant
+    Credential -.-> HolderGrant
+    Credential --> Status
+    Credential --> Project --> Verifier
+    HolderGrant -. signs fresh challenge<br/>or project binding .-> Verifier
+    Status --> Verifier
+
+    classDef root fill:#f1eaff,stroke:#6941c6,color:#26164a,stroke-width:2px;
+    classDef grant fill:#e8f1ff,stroke:#2457a6,color:#10213a,stroke-width:2px;
+    classDef issuer fill:#eaf8f1,stroke:#238558,color:#123c2a,stroke-width:2px;
+    classDef credential fill:#dff7ec,stroke:#167a4a,color:#103a26,stroke-width:2px;
+    classDef holder fill:#edf2f7,stroke:#4a5568,color:#1a202c,stroke-width:2px;
+    classDef project fill:#fff5dc,stroke:#a46b08,color:#4a3100,stroke-width:2px;
+    classDef status fill:#fff0d8,stroke:#b45f06,color:#472400,stroke-width:2px;
+    classDef verify fill:#d9f99d,stroke:#4d7c0f,color:#1a2e05,stroke-width:2px;

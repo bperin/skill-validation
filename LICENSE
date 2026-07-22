@@ -1,0 +1,21 @@
+# Proprietary and Confidentiality Agreement
+
+**ALL RIGHTS RESERVED. THIS SOFTWARE AND ACCOMPANYING SMART CONTRACTS ARE PROPRIETARY AND CONFIDENTIAL.**
+
+## 1. Strict Non-Open Source License & Ownership
+This repository, including all source code, smart contracts, documentation, configurations, and assets (collectively, the "Software"), is the sole and exclusive property of the copyright holder. It is **NOT** open-source software. No license, express or implied, by estoppel or otherwise, to any intellectual property rights is granted by this document or by the disclosure of the Software.
+
+## 2. Absolute Prohibition on Use, Copying, and Distribution
+*   **No Unauthorized Use:** You may not run, execute, deploy, or otherwise use the Software or any portion thereof for any purpose (commercial, non-commercial, educational, research, testing, or personal) without a fully executed, written commercial license agreement signed by an authorized representative of the copyright holder.
+*   **No Copying or Modification:** You may not copy, reproduce, modify, adapt, translate, prepare derivative works of, decompile, reverse engineer, disassemble, or otherwise attempt to derive the source code or underlying algorithms of the Software.
+*   **No Distribution:** You may not distribute, sublicense, lease, rent, lend, sell, publish, or otherwise transfer the Software, in whole or in part, to any third party.
+
+## 3. Smart Contract Deployment & Execution Restrictions
+The smart contracts contained in this repository (including but not limited to `SkillRegistry.sol`, `SkillMVPRegistry.sol`, and any associated compilation artifacts, ABIs, or deployment scripts) are strictly proprietary:
+*   **No Mainnet or Testnet Deployment:** You are strictly prohibited from deploying these contracts, or any modified versions of them, to any public, private, local, or federated blockchain network (including but not limited to Ethereum Mainnet, Arbitrum, Optimism, Base, any testnets, or local development networks) without explicit written authorization.
+*   **No Interaction:** Interaction with any deployed instances of these contracts without explicit authorization is strictly prohibited.
+
+## 4. Mandatory Consulting & Licensing
+Any use, integration, deployment, or evaluation of this Software requires a formal consulting engagement and a custom proprietary license agreement. 
+
+For inquiries regarding licensing, commercial partnerships, or consulting services, you must contact the copyright holder directly.

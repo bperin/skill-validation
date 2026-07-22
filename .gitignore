@@ -1,0 +1,29 @@
+# Go
+/bin/
+*.test
+coverage.out
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Tooling and OS noise
+.DS_Store
+node_modules/
+
+# Agent execution artifacts (never commit)
+docs/tasks/
+
+# Hardhat outputs
+contracts/artifacts/
+contracts/cache/
+contracts/typechain-types/
+/.env
+
+# Local Demo Outputs
+/index.html
+/demo-output.html
+/scripts/x92_z.sh

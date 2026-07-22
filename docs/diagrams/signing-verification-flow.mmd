@@ -1,0 +1,33 @@
+flowchart TB
+    subgraph Issue[Issue the signed record]
+        direction LR
+        Evidence[Project evidence]:::evidence
+        Policy[Check current<br/>skill policy]:::issuer
+        Sign[Scoped child key<br/>signs exact claim]:::issuer
+        Credential[Signed portable<br/>skill record]:::credential
+        Evidence --> Policy --> Sign --> Credential
+    end
+
+    subgraph Verify[Verify it anywhere]
+        direction LR
+        Publish[Embed beside project<br/>or link from a profile]:::surface
+        Check[Verify signature<br/>and linked evidence]:::verify
+        Current{Active and<br/>current?}:::result
+        Publish --> Check --> Current
+    end
+
+    Registry[(Issuer API or public registry:<br/>commitment, status, and lineage)]:::chain
+    Update[New policy or evidence<br/>creates a linked update]:::history
+
+    Issue --> Verify
+    Issue --> Registry --> Verify
+    Update --> Registry
+
+    classDef evidence fill:#e8f1ff,stroke:#2457a6,color:#10213a,stroke-width:2px;
+    classDef issuer fill:#eaf8f1,stroke:#238558,color:#123c2a,stroke-width:2px;
+    classDef credential fill:#dff7ec,stroke:#167a4a,color:#103a26,stroke-width:2px;
+    classDef surface fill:#edf2f7,stroke:#4a5568,color:#1a202c,stroke-width:2px;
+    classDef chain fill:#fff0d8,stroke:#b45f06,color:#472400,stroke-width:2px;
+    classDef verify fill:#fff5dc,stroke:#a46b08,color:#4a3100,stroke-width:2px;
+    classDef result fill:#d9f99d,stroke:#4d7c0f,color:#1a2e05,stroke-width:2px;
+    classDef history fill:#fee8e7,stroke:#b42318,color:#5d0e08,stroke-width:2px;
